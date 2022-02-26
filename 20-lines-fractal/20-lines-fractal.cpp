@@ -3,18 +3,18 @@
 #include <cmath>
 
 int main() {
-    system("mode 140, 44");
-    std::cout << "\033[8;44;140t" << "\033c" << "\033[38;5;6m";
-    std::string gradient = { ".,:;/sqrt=god/;:,. " };
+    int h = 30, w = 120;
+    std::cout << "\033c\033[8;" << h << ";" << w << "t\033[38;5;6m";
+    std::string gradient = { ".,:;/Sqrt/;:,. " };
     for (double t = 0; ; t++) {
-        std::string str_full;
-        for (double h = 1; h < 44; h++) {
-            for (double w = 1; w < 140; w++) {
-                size_t formula = pow(w * h * h * t, 0.5) * (t * 0.00001);
-                str_full += gradient[formula % gradient.size()];
+        std::string fractal;
+        for (double y = 1; y < h; y++) {
+            for (double x = 1; x < w; x++) {
+                size_t formula = sqrt(x * y * y * t) * (t * 0.00001);
+                fractal += gradient[formula % gradient.size()];
             }
-            str_full += "\n";
+            fractal += "\n";
         }
-        std::cout << str_full << "\033[H";
+        std::cout << fractal << "\033[H";
     }
 }
