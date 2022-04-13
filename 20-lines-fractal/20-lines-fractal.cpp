@@ -10,11 +10,11 @@ int main() {
         std::string fractal;
         for (double y = 1; y < h; y++) {
             for (double x = 1; x < w; x++) {
-                size_t formula = sqrt(x * y * y * t) * (t * 0.00001);
+                size_t formula = sqrt(x * y * y) * (t * 0.0001);
                 fractal += gradient[formula % gradient.size()];
             }
             fractal += "\n";
         }
-        std::cout << fractal << "\033[H";
+        std::cout << fractal << "\033[H" << std::flush;
     }
 }
